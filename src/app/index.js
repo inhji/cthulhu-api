@@ -1,6 +1,7 @@
 import koa from 'koa'
 import koaJwt from 'koa-jwt'
 import koaBody from 'koa-body'
+import koaCors from 'koa-cors'
 
 import { connect } from '../database'
 import router from './router'
@@ -12,6 +13,7 @@ export const start = async () => {
 
     const app = new koa()
 
+    app.use(koaCors())
     app.use(koaBody())
     app.use(
       // Checks for a JWT in the Authorization Header like:

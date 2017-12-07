@@ -28,6 +28,7 @@
     "jsonwebtoken": "^8.1.0",
     "koa": "^2.4.1",
     "koa-body": "^2.5.0",
+    "koa-cors": "0.0.16",
     "koa-jwt": "^3.3.0",
     "koa-router": "^7.3.0",
     "mongoose": "^4.13.6"
