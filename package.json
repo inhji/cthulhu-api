@@ -1,0 +1,47 @@
+{
+  "name": "cthulhu-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -r dotenv/config .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "prettier": {
+    "printWidth": 100,
+    "parser": "flow",
+    "semi": false,
+    "singleQuote": true
+  },
+  "dependencies": {
+    "apollo-errors": "^1.5.1",
+    "apollo-resolvers": "^1.0.3",
+    "apollo-server-koa": "^1.2.0",
+    "bcrypt": "^1.0.3",
+    "dotenv": "^4.0.0",
+    "graphql": "^0.11.7",
+    "graphql-iso-date": "^3.3.0",
+    "graphql-tools": "^2.8.0",
+    "jsonwebtoken": "^8.1.0",
+    "koa": "^2.4.1",
+    "koa-body": "^2.5.0",
+    "koa-jwt": "^3.2.2",
+    "koa-router": "^7.3.0",
+    "mongoose": "^4.13.5"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "nodemon": "^1.12.1"
+  }
+}
