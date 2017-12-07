@@ -15,3 +15,7 @@ export const UserExistsError = createError('UserExistsError', {
 export const InvalidCredentialsError = createError('InvalidCredentialsError', {
   message: 'Invalid Credentials'
 })
+
+export const HabitNotFoundError = createError('HabitNotFoundError', {
+  message: 'Habit does not exist'
+})
