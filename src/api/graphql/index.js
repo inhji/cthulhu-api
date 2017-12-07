@@ -15,6 +15,8 @@ const typeDefs = /* GraphQL */ `
     name: String!
     description: String
 
+    days: Int
+
     isGood: Boolean
     threshold: Int
 
