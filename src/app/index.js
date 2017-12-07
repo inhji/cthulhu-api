@@ -1,32 +1,28 @@
-import koa from 'koa'
-import koaJwt from 'koa-jwt'
-import koaBody from 'koa-body'
-import koaCors from 'koa-cors'
-
-import { connect } from '../database'
+import express from 'express'
+import jwt from 'express-jwt'
+import bodyParser from 'body-parser'
+import cors from 'cors'
 import router from './router'
+import { connect } from '../database'
 
 export const start = async () => {
   try {
     await connect()
     console.log('> Database Connected')
 
-    const app = new koa()
+    const app = express()
 
-    app.use(koaCors({ origin: true }))
-    app.use(koaBody())
+    app.use(bodyParser.json())
+    app.use(cors({ origin: true }))
     app.use(
-      // Checks for a JWT in the Authorization Header like:
-      // Authorization: 'Bearer myjsonwebtoken'
-      koaJwt({
+      jwt({
         secret: process.env.JWT_SECRET,
-        passthrough: true
+        credentialsRequired: false
       })
     )
-    app.use(router.routes())
-    app.use(router.allowedMethods())
 
-    await app.listen(3000)
+    app.use('/', router)
+    app.listen(3000)
     console.log('> Server Connected')
     console.log('> Running on port 3000')
   } catch (e) {

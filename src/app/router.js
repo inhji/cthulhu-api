@@ -1,25 +1,18 @@
-import koaRouter from 'koa-router'
-import { graphqlKoa, graphiqlKoa } from 'apollo-server-koa'
+import express from 'express'
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { schema } from '../api/graphql'
 import { formatError } from 'apollo-errors'
 
-const router = new koaRouter()
+const router = express.Router()
 
-const graphqlOptions = ctx => ({
-  schema,
-  // Format errors according to apollo-errors
-  formatError,
-  // Pass the user object from koaJwt to GraphQL
-  context: { user: ctx.state.user }
-})
-
-router.post('/graphql', graphqlKoa(graphqlOptions))
-router.get('/graphql', graphqlKoa(graphqlOptions))
-router.get(
-  '/graphiql',
-  graphiqlKoa({
-    endpointURL: '/graphql'
-  })
+router.use(
+  '/graphql',
+  graphqlExpress(req => ({
+    schema,
+    formatError,
+    context: { user: req.user }
+  }))
 )
+router.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
 export default router
