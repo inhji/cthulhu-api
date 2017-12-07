@@ -5,6 +5,7 @@ import * as habitMutations from '../habit/mutations'
 import * as userMutations from '../user/mutations'
 
 import * as habitQueries from '../habit/queries'
+import * as userQueries from '../user/queries'
 
 const typeDefs = /* GraphQL */ `
   scalar DateTime
@@ -63,7 +64,8 @@ const typeDefs = /* GraphQL */ `
 const resolvers = {
   DateTime: GraphQLDateTime,
   Query: {
-    ...habitQueries
+    ...habitQueries,
+    ...userQueries
   },
   Mutation: {
     ...habitMutations,
