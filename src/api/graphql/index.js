@@ -49,7 +49,7 @@ const typeDefs = /* GraphQL */ `
   type Query {
     habits: [Habit]
     habit(id: ID!): Habit
-    user(): User
+    user: User
   }
 
   type Mutation {
