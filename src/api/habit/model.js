@@ -9,6 +9,8 @@ const schema = new Schema(
     },
     description: String,
 
+    days: { type: Number, default: 0 },
+
     isGood: { type: Boolean, default: false },
     threshold: { type: Number, default: 0 },
 
