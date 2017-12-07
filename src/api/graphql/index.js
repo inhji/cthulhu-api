@@ -50,9 +50,9 @@ const typeDefs = /* GraphQL */ `
 
   type Mutation {
     createHabit (authorId: ID!, name: String!, description: String, isGood: Boolean, threshold: Int): Habit
-    updateHabit(habitId: ID!, name: String, description: String, isGood: Boolean, threshold: Int): Habit
-    deleteHabit(habitId: ID!): DeleteHabitPayload,
-    createHabitLog (habitId: ID!): Habit
+    updateHabit(id: ID!, name: String, description: String, isGood: Boolean, threshold: Int): Habit
+    deleteHabit(id: ID!): DeleteHabitPayload,
+    createHabitLog (id: ID!): Habit
     registerUser(email: String!, password: String!, name: String!): AuthPayload
     authenticateUser(email: String!, password: String!): AuthPayload
   }

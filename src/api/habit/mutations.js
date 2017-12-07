@@ -19,8 +19,8 @@ export const createHabit = authenticationRequiredResolver.createResolver(
 )
 
 export const updateHabit = habitNotFoundResolver.createResolver(
-  async (_, { habitId, name, description, isGood, threshold }) => {
-    const habit = await Habit.findById(habitId)
+  async (_, { id, name, description, isGood, threshold }) => {
+    const habit = await Habit.findById(id)
     habit.name = name || habit.name
     habit.description = description || habit.description
     habit.isGood = isGood || habit.isGood
@@ -29,12 +29,12 @@ export const updateHabit = habitNotFoundResolver.createResolver(
   }
 )
 
-export const deleteHabit = habitNotFoundResolver.createResolver(async (_, { habitId }) => {
-  return Habit.findByIdAndRemove(habitId)
+export const deleteHabit = habitNotFoundResolver.createResolver(async (_, { id }) => {
+  return Habit.findByIdAndRemove(id)
 })
 
-export const createHabitLog = habitNotFoundResolver.createResolver(async (_, { habitId }) => {
-  const habit = await Habit.findById(habitId)
+export const createHabitLog = habitNotFoundResolver.createResolver(async (_, { id }) => {
+  const habit = await Habit.findById(id)
   habit.logs.push(new Date())
   return habit.save()
 })
