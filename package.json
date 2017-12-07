@@ -30,7 +30,7 @@
     "koa-body": "^2.5.0",
     "koa-jwt": "^3.2.2",
     "koa-router": "^7.3.0",
-    "mongoose": "^4.13.5"
+    "mongoose": "^4.13.6"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
