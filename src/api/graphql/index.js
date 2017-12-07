@@ -36,6 +36,7 @@ const typeDefs = /* GraphQL */ `
 
     name: String!
     password: String!
+    email: String!
 
     createdAt: DateTime
     updatedAt: DateTime
