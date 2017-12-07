@@ -13,7 +13,7 @@ export const start = async () => {
 
     const app = new koa()
 
-    app.use(koaCors())
+    app.use(koaCors({ origin: true }))
     app.use(koaBody())
     app.use(
       // Checks for a JWT in the Authorization Header like:
