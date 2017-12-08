@@ -17,11 +17,11 @@ const typeDefs = /* GraphQL */ `
     description: String
 
     days: Int
-
     isGood: Boolean
     threshold: Int
-
     logs: [DateTime]
+
+    author: User
 
     createdAt: DateTime
     updatedAt: DateTime
@@ -54,8 +54,8 @@ const typeDefs = /* GraphQL */ `
   }
 
   type Mutation {
-    createHabit (authorId: ID!, name: String!, description: String, isGood: Boolean, threshold: Int): Habit
-    updateHabit(id: ID!, name: String, description: String, isGood: Boolean, threshold: Int): Habit
+    createHabit (author: ID!, name: String!, description: String, isGood: Boolean, threshold: Int, days: Int): Habit
+    updateHabit(id: ID!, name: String, description: String, isGood: Boolean, threshold: Int, days: Int): Habit
     deleteHabit(id: ID!): DeleteHabitPayload,
     createHabitLog (id: ID!): Habit
     registerUser(email: String!, password: String!, name: String!): AuthPayload

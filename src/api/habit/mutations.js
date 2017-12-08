@@ -12,8 +12,8 @@ const habitNotFoundResolver = authenticationRequiredResolver.createResolver(
 )
 
 export const createHabit = authenticationRequiredResolver.createResolver(
-  (_, { name, description, isGood, threshold }) => {
-    const habit = new Habit({ name, description, isGood, threshold })
+  (_, { author, name, description, isGood, threshold, days }) => {
+    const habit = new Habit({ name, description, isGood, threshold, days, author })
     return habit.save()
   }
 )
