@@ -3,11 +3,10 @@ import mongoose from 'mongoose'
 mongoose.Promise = global.Promise
 
 export const connect = () => {
-  const url = process.env.MONGO_CONNECTION
-  const db = process.env.MONGO_DATABASE
+  const connectionString = process.env.MONGO_CONNECTION
 
   return new Promise((resolve, reject) => {
-    mongoose.connect(`${url}/${db}`, {
+    mongoose.connect(connectionString, {
       useMongoClient: true
     })
 
