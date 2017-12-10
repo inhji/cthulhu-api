@@ -50,6 +50,7 @@ const typeDefs = /* GraphQL */ `
   type Query {
     habits: [Habit]
     habit(id: ID!): Habit
+    users: [User]
     user: User
   }
 
