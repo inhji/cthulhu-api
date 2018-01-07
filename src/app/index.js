@@ -24,14 +24,14 @@ export const start = async () => {
       })
     )
     app.use('/', router)
-    if (dev) {
-      app.use(errorHandler({ log: true }))
-    } else {
-      app.use((err, req, res, next) => {
-        logger.error(err.stack)
-        res.sendStatus(500).send('Something broke horribly!')
-      })
-    }
+    app.use(
+      dev
+        ? errorHandler({ log: true })
+        : (err, req, res, next) => {
+            logger.error(err.stack)
+            res.sendStatus(500).send('Something broke horribly!')
+          }
+    )
 
     app.listen(port)
 

@@ -1,6 +1,7 @@
 import { createResolver } from 'apollo-resolvers'
 import { createError, isInstance } from 'apollo-errors'
 import { UnknownError, AuthenticationRequiredError, UserExistsError } from './errors'
+import logger from '../app/logger'
 
 export const baseResolver = createResolver(
   //incoming requests will pass through this resolver like a no-op
@@ -10,11 +11,11 @@ export const baseResolver = createResolver(
     such as ORM errors etc
   */
   (root, args, context, error) => {
-    console.log(error, isInstance(error))
     if (isInstance(error)) {
       return error
     }
 
+    logger.error(`Unknown Error occurred in BaseResolver: ${error.name}`)
     return new UnknownError({
       data: {
         name: error.name
@@ -44,4 +45,3 @@ export const authenticationRequiredResolver = baseResolver.createResolver(
     }
   }
 )
-
