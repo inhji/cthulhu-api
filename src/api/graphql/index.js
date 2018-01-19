@@ -6,77 +6,47 @@ import * as userMutations from '../user/mutations'
 
 import * as habitQueries from '../habit/queries'
 import * as userQueries from '../user/queries'
+import * as trackQueries from '../track/queries'
+
+import userTypes from '../user/types'
+import habitTypes from '../habit/types'
+import trackTypes from '../track/types'
+
+import cachedResolver from '../cached_resolver'
 
 const typeDefs = /* GraphQL */ `
   scalar DateTime
-
-  type Habit {
-    id: ID!
-
-    name: String!
-    description: String
-
-    days: Int
-    isGood: Boolean
-    threshold: Int
-    logs: [DateTime]
-
-    author: User
-
-    createdAt: DateTime
-    updatedAt: DateTime
-  }
-
-  type DeleteHabitPayload {
-    id: ID!
-  }
-
-  type User {
-    id: ID!
-
-    name: String!
-    password: String!
-    email: String!
-
-    createdAt: DateTime
-    updatedAt: DateTime
-  }
-
-  type AuthPayload {
-    id: ID!
-    token: String!
-  }
 
   type Query {
     habits: [Habit]
     habit(id: ID!): Habit
     users: [User]
     user: User
+    tracks: [Track]
   }
 
-  type Mutation {
-    createHabit (author: ID!, name: String!, description: String, isGood: Boolean, threshold: Int, days: Int): Habit
-    updateHabit(id: ID!, name: String, description: String, isGood: Boolean, threshold: Int, days: Int): Habit
-    deleteHabit(id: ID!): DeleteHabitPayload,
-    createHabitLog (id: ID!): Habit
-    registerUser(email: String!, password: String!, name: String!): AuthPayload
-    authenticateUser(email: String!, password: String!): AuthPayload
+  type Mutation  {
+    noop: ID
   }
 `
 
 const resolvers = {
   DateTime: GraphQLDateTime,
   Query: {
+    ...trackQueries,
     ...habitQueries,
     ...userQueries
   },
   Mutation: {
     ...habitMutations,
-    ...userMutations
+    ...userMutations,
+    // noop works as placeholder because type Mutation cannot be empty.
+    // this way we can extend Mutation from other models.
+    noop: () => null
   }
 }
 
 export const schema = makeExecutableSchema({
-  typeDefs,
+  typeDefs: [typeDefs, userTypes, habitTypes, trackTypes],
   resolvers
 })
