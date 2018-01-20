@@ -1,6 +1,0 @@
-{
-  "uid": "cthulhu-api",
-  "append": true,
-  "watch": false,
-  "script": "index.js"
-}
