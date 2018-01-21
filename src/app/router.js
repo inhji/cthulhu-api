@@ -8,9 +8,9 @@ const router = express.Router()
 router.get('/', (req, res) => {
   return res.send(
     `<div>
-      <p>This is Cthulhu API. Feel free to explore the GraphQL Endpoint</p>
       <p>
-        <a href="/graphiql">GraphiQL</a>
+        <span>This is Cthulhu API. Feel free to explore the </span>
+        <a href="/graphiql">GraphQL Endpoint</a>
       </p>
     </div>`
   )
