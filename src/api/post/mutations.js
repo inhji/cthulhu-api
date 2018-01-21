@@ -1,0 +1,19 @@
+import { Note, Article, Bookmark } from './model'
+
+export const createNote = (_, { content }, { user }) => {
+  const author = user._id
+  const note = new Note({ content, author })
+  return note.save()
+}
+
+export const createArticle = (_, { title, content }, { user }) => {
+  const author = user._id
+  const article = new Article({ title, content, author })
+  return article.save()
+}
+
+export const createBookmark = (_, { url }, { user }) => {
+  const author = user._id
+  const bookmark = new Bookmark({ url, author })
+  return bookmark.save()
+}
