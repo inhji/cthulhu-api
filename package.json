@@ -28,7 +28,7 @@
     "graphql-iso-date": "^3.3.0",
     "graphql-tools": "^2.18.0",
     "jsonwebtoken": "^8.1.0",
-    "mongoose": "^5.0.0",
+    "mongoose": "^5.0.1",
     "node-fetch": "^1.7.3",
     "winston": "^3.0.0-rc1"
   },
