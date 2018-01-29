@@ -26,7 +26,7 @@
     "graphql-tools": "^2.19.0",
     "hashids": "1.1.4",
     "jsonwebtoken": "^8.1.1",
-    "mongoose": "^5.0.1",
+    "mongoose": "^5.0.2",
     "mongoose-plugin-autoinc": "^1.1.5",
     "node-fetch": "^1.7.3",
     "winston": "^3.0.0-rc1"
