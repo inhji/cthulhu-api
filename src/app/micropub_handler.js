@@ -3,7 +3,7 @@ import { Note, Article } from '../api/post/model'
 import { User } from '../api/user/model'
 import { generatePermalink } from './permalinks'
 
-export default async function micropubHandler (micropubDocument, req) {
+export async function micropubHandler (micropubDocument, req) {
   const { type, name, content } = discoverPostType(micropubDocument)
   const user = await User.findOne()
   const author = user._id
