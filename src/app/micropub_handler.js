@@ -1,6 +1,6 @@
 import { discoverPostType } from './post_type_discovery'
 import { Note, Article } from '../api/post/model'
-import { User } from '../api/user/model'
+import User from '../api/user/model'
 import { generatePermalink } from './permalinks'
 
 export async function micropubHandler (micropubDocument, req) {
