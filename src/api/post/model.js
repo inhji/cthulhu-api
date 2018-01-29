@@ -1,14 +1,17 @@
 import mongoose, { Schema } from 'mongoose'
+import { autoIncrement } from 'mongoose-plugin-autoinc'
 
 const { ObjectId } = Schema
 
 const schema = new Schema(
   {
     tags: [String],
-    author: { type: ObjectId, ref: 'User', required: true }
+    author: { type: ObjectId, ref: 'User' }
   },
   { discriminatorKey: 'type', timestamps: true }
 )
+
+schema.plugin(autoIncrement, { model: 'Post', field: 'counter' })
 
 const Post = mongoose.model('Post', schema)
 
