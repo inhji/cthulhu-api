@@ -4,6 +4,7 @@ import { schema } from '../api/graphql'
 import { formatError } from 'apollo-errors'
 
 const router = express.Router()
+const dev = process.env.NODE_ENV !== 'production'
 
 router.get('/', (req, res) => {
   return res.send(
@@ -20,7 +21,7 @@ router.use(
   graphqlExpress(req => ({
     schema,
     formatError,
-    context: { user: req.user }
+    context: { user: req.user, dev }
   }))
 )
 router.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
