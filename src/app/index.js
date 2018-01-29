@@ -1,5 +1,4 @@
 import express from 'express'
-import jwt from 'express-jwt'
 import bodyParser from 'body-parser'
 import errorHandler from 'errorhandler'
 import cors from 'cors'
@@ -17,20 +16,14 @@ export const start = async () => {
 
     app.use(bodyParser.json())
     app.use(cors({ origin: true }))
-    app.use(
-      jwt({
-        secret: process.env.JWT_SECRET,
-        credentialsRequired: false
-      })
-    )
     app.use('/', router)
     app.use(
       dev
         ? errorHandler({ log: true })
         : (err, req, res, next) => {
-            logger.error(err.stack)
-            res.sendStatus(500).send('Something broke horribly!')
-          }
+          logger.error(err.stack)
+          res.sendStatus(500).send('Something broke horribly!')
+        }
     )
 
     app.listen(port)

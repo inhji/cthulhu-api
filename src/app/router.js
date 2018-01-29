@@ -1,6 +1,7 @@
 import express from 'express'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import micropub from 'micropub-express'
+import jwt from 'express-jwt'
 import { formatError } from 'apollo-errors'
 import { schema } from '../api/graphql'
 import { micropubHandler } from './micropub_handler'
@@ -32,6 +33,10 @@ router.use(
 
 router.use(
   '/graphql',
+  jwt({
+    secret: process.env.JWT_SECRET,
+    credentialsRequired: false
+  }),
   graphqlExpress(req => ({
     schema,
     formatError,
