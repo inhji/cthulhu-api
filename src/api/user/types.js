@@ -3,7 +3,6 @@ export default /* GraphQL */ `
     id: ID!
 
     name: String!
-    password: String!
     email: String!
 
     createdAt: DateTime
