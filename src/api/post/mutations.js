@@ -1,6 +1,12 @@
 import { Note, Article, Bookmark } from './model'
 
-export const createNote = (_, { content }, { user }) => {
+export const createNote = (_, { content }, { user, dev }) => {
+  // HACK: dont require author field if we're in dev mode
+  if (dev) {
+    const note = new Note({ content })
+    return note.save()
+  }
+
   const author = user._id
   const note = new Note({ content, author })
   return note.save()
