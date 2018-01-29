@@ -7,6 +7,7 @@ export default /* GraphQL */ `
 
     tags: [String]
     author: User
+    hashid: String
 
     createdAt: DateTime
     updatedAt: DateTime
@@ -19,6 +20,7 @@ export default /* GraphQL */ `
 
     tags: [String]
     author: User
+    hashid: String
 
     createdAt: DateTime
     updatedAt: DateTime
@@ -31,6 +33,7 @@ export default /* GraphQL */ `
 
     tags: [String]
     author: User
+    hashid: String
 
     createdAt: DateTime
     updatedAt: DateTime
