@@ -8,6 +8,7 @@ export default /* GraphQL */ `
     tags: [String]
     author: User
     hashid: String
+    type: String
 
     createdAt: DateTime
     updatedAt: DateTime
@@ -21,6 +22,8 @@ export default /* GraphQL */ `
     tags: [String]
     author: User
     hashid: String
+    type: String
+
 
     createdAt: DateTime
     updatedAt: DateTime
@@ -28,12 +31,13 @@ export default /* GraphQL */ `
 
   type Bookmark {
     id: ID!
-
     url: String
 
     tags: [String]
     author: User
     hashid: String
+    type: String
+
 
     createdAt: DateTime
     updatedAt: DateTime
