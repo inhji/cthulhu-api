@@ -27,7 +27,7 @@ const typeDefs = /* GraphQL */ `
     user: User
     tracks: [Track]
     posts: [Post]
-    post: Post
+    post(id: ID!): Post
   }
 
   type Mutation  {
