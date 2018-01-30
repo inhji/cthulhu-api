@@ -7,7 +7,13 @@ export const posts = async () => {
 }
 
 export const post = (_, { id }) => {
-  return Post.findOne({ _id: id })
+  return Post.findOne({ id: id })
+    .populate('author')
+    .exec()
+}
+
+export const postByHashid = (_, { hashid }) => {
+  return Post.findOne({ hashid: hashid })
     .populate('author')
     .exec()
 }

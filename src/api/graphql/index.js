@@ -28,6 +28,7 @@ const typeDefs = /* GraphQL */ `
     tracks: [Track]
     posts: [Post]
     post(id: ID!): Post
+    postByHashid(hashid: ID!): Post
   }
 
   type Mutation  {
