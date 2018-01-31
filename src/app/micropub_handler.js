@@ -11,13 +11,16 @@ export async function micropubHandler (micropubDocument, req) {
   if (type === 'Note') {
     const note = new Note({ author, content })
     await note.save()
+    const url = generatePermalink({ hashid: note.hashid, type })
+    req.log.info(`Micropub note created - url is: ${url}`)
 
-    return Promise.resolve({ url: generatePermalink({ hashid: note.hashid, type }) })
+    return Promise.resolve({ url })
   } else if (type === 'Article') {
     const article = new Article({ author, content, name })
     await article.save()
+    const url = generatePermalink({ hashid: article.hashid, type })
 
-    return Promise.resolve({ url: generatePermalink({ hashid: article.hashid, type }) })
+    return Promise.resolve({ url })
   } else {
     return Promise.reject()
   }
