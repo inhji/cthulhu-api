@@ -17,7 +17,7 @@ export async function micropubHandler (micropubDocument, req) {
     const article = new Article({ author, content, name })
     await article.save()
 
-    return Promise.resolve({ url: generatePermalink({ hashid: note.hashid, type }) })
+    return Promise.resolve({ url: generatePermalink({ hashid: article.hashid, type }) })
   } else {
     return Promise.reject()
   }
