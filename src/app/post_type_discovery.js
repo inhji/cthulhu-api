@@ -12,12 +12,14 @@ function killWhiteSpace (str) {
 export function discoverPostType (micropubDocument) {
   let name, content, type
   const { properties } = micropubDocument
+  const { category } = properties
 
   function result () {
     return {
       name,
       content,
-      type
+      type,
+      category
     }
   }
 
