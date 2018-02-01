@@ -3,7 +3,7 @@ import { Note, Article } from '../api/post/model'
 import User from '../api/user/model'
 import { generatePermalink } from './permalinks'
 
-const createMicropubNote = async ({ name, content, category }) => {
+const createMicropubNote = async ({ author, name, content, category }) => {
   const note = new Note({ author, content, tags: category })
   await note.save()
   const url = generatePermalink({ hashid: note.hashid, type: 'note' })
@@ -17,7 +17,7 @@ export async function micropubHandler (micropubDocument, req) {
   const author = user._id
 
   if (type === 'Note') {
-    return createMicropubNote({ name, content, category })
+    return createMicropubNote({ author, name, content, category })
   } else if (type === 'Article') {
     const article = new Article({ author, content, name })
     await article.save()
