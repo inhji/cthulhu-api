@@ -20,14 +20,14 @@ export function discoverPostType2 (doc) {
   let name, content, summary, category
 
   // let's start with the easiest one
-  category = properties.category
+  category = props.category
 
   // then content
-  content = firstNonEmpty(properties.content) || firstNonEmpty(properties.summary) || null
+  content = firstNonEmpty(props.content) || firstNonEmpty(props.summary) || null
   content = content ? killWhiteSpace(content) : null
 
   // then name
-  name = properties.name ? firstNonEmpty(properties.name) : null
+  name = props.name ? firstNonEmpty(props.name) : null
   name = name ? killWhiteSpace(name) : null
 
   if (name && content) {
