@@ -9,7 +9,13 @@ function killWhiteSpace (str) {
   return str.trim().replace(/  +/g, ' ')
 }
 
+function extractTags (category) {
+  return category.map(c, index)
+}
+
 export function discoverPostType (micropubDocument) {
+  console.log(JSON.stringify(micropubDocument))
+
   let name, content, type
   const { properties } = micropubDocument
   const { category } = properties
