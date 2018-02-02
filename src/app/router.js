@@ -40,7 +40,7 @@ router.use(
   graphqlExpress(req => ({
     schema,
     formatError,
-    context: { user: req.user, dev }
+    context: { user: req.user, dev, log: req.log }
   }))
 )
 router.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))

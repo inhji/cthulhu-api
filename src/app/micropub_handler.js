@@ -12,6 +12,8 @@ const createMicropubNote = async ({ author, name, content, category }) => {
 }
 
 export async function micropubHandler (micropubDocument, req) {
+  req.log.info('Handling MicropubDocument:', { data: micropubDocument })
+
   const { type, name, content, category } = discoverPostType(micropubDocument)
   const user = await User.findOne()
   const author = user._id

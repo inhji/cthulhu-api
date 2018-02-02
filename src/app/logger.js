@@ -2,7 +2,7 @@ import { createLogger, format, transports } from 'winston'
 const { combine, timestamp, colorize, simple, printf } = format
 
 const myFormat = printf(info => {
-  return `${info.timestamp} [${info.level}]: ${info.message}`
+  return `${info.timestamp} [${info.level}]: ${info.message} ${JSON.stringify(info.data) || ''}`
 })
 
 const logger = createLogger({

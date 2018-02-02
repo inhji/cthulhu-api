@@ -36,7 +36,7 @@ export const start = async () => {
 
     app.listen(port)
 
-    logger.info(`Cthulhu API started on port ${port}`, 'lol')
+    logger.info(`Cthulhu API started on port ${port}`)
   } catch (e) {
     logger.error(`Error while starting server: ${e.message}`)
   }
