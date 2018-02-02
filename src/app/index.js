@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import errorHandler from 'errorhandler'
 import cors from 'cors'
+import morgan from 'morgan'
 import router from './router'
 import logger from './logger'
 import { connect } from '../database'
@@ -9,6 +10,7 @@ import { connect } from '../database'
 export const start = async () => {
   try {
     await connect()
+    logger.info('Database connected')
 
     const app = express()
     const port = process.env.PORT
@@ -18,6 +20,8 @@ export const start = async () => {
       req.log = logger
       next()
     })
+    // Pipe morgan output into winston :)
+    app.use(morgan('dev', { stream: logger.stream }))
     app.use(bodyParser.json())
     app.use(cors({ origin: true }))
     app.use('/', router)
@@ -32,12 +36,7 @@ export const start = async () => {
 
     app.listen(port)
 
-    logger.info(`Cthulhu API started on port ${port}`, {
-      foo: {
-        bar: [1, 2, 3],
-        baz: { lol: 'rofl' }
-      }
-    })
+    logger.info(`Cthulhu API started on port ${port}`, 'lol')
   } catch (e) {
     logger.error(`Error while starting server: ${e.message}`)
   }
