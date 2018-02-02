@@ -1,4 +1,4 @@
-import { discoverPostType } from './post_type_discovery'
+import { discoverPostType2 } from './post_type_discovery'
 import { Note, Article } from '../api/post/model'
 import User from '../api/user/model'
 import { generatePermalink } from './permalinks'
@@ -14,7 +14,7 @@ const createMicropubNote = async ({ author, name, content, category }) => {
 export async function micropubHandler (micropubDocument, req) {
   req.log.info('Handling MicropubDocument:', { data: micropubDocument })
 
-  const { type, name, content, category } = discoverPostType(micropubDocument)
+  const { type, name, content, category } = discoverPostType2(micropubDocument)
   const user = await User.findOne()
   const author = user._id
 

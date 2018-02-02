@@ -1,4 +1,5 @@
 import compact from 'lodash.compact'
+import head from 'lodash.head'
 
 // Implementation Reference: https://indieweb.org/post-type-discovery
 
@@ -9,8 +10,40 @@ function killWhiteSpace (str) {
   return str.trim().replace(/  +/g, ' ')
 }
 
-function extractTags (category) {
-  return category.map(c, index)
+function firstNonEmpty (arr) {
+  return head(compact(arr))
+}
+
+export function discoverPostType2 (doc) {
+  const props = doc.properties
+
+  let name, content, summary, category
+
+  // let's start with the easiest one
+  category = properties.category
+
+  // then content
+  content = firstNonEmpty(properties.content) || firstNonEmpty(properties.summary) || null
+  content = content ? killWhiteSpace(content) : null
+
+  // then name
+  name = properties.name ? firstNonEmpty(properties.name) : null
+  name = name ? killWhiteSpace(name) : null
+
+  if (name && content) {
+    return {
+      name,
+      content,
+      category,
+      type: ARTICLE
+    }
+  } else {
+    return {
+      content,
+      category,
+      type: NOTE
+    }
+  }
 }
 
 export function discoverPostType (micropubDocument) {
