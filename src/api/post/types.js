@@ -32,6 +32,8 @@ export default /* GraphQL */ `
   type Bookmark {
     id: ID!
     url: String
+    title: String
+    content: String
 
     tags: [String]
     author: User
