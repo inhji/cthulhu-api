@@ -9,12 +9,12 @@ const createNote = async ({ author, content, category }) => {
 }
 
 const createArticle = async ({ author, name, content, category }) => {
-  const article = new Article({ author, content, name, tags: category })
+  const article = new Article({ author, title: content, name, tags: category })
   return await article.save()
 }
 
 const createBookmark = async ({ author, name, content, category, bookmarkOf }) => {
-  const bookmark = new Bookmark({ author, name, content, tags: category, url: bookmarkOf })
+  const bookmark = new Bookmark({ author, title: name, content, tags: category, url: bookmarkOf })
   return await bookmark.save()
 }
 
