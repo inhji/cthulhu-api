@@ -1,32 +1,47 @@
-import { discoverPostType2 } from './post_type_discovery'
+import { discoverPostType } from './post_type_discovery'
 import { Note, Article } from '../api/post/model'
 import User from '../api/user/model'
 import { generatePermalink } from './permalinks'
 
-const createMicropubNote = async ({ author, name, content, category }) => {
+const createNote = async ({ author, content, category }) => {
   const note = new Note({ author, content, tags: category })
-  await note.save()
-  const url = generatePermalink({ hashid: note.hashid, type: 'note' })
+  return note.save()
+}
 
-  return Promise.resolve({ url })
+const createArticle = async ({ author, name, content, category }) => {
+  const article = new Article({ author, content, name, tags: category })
+  return await article.save()
+}
+
+const createBookmark = async ({ author, name, content, category, bookmarkOf }) => {
+  const bookmark = new Bookmark({ author, name, content, tags: category, url: bookmarkOf })
+  return await bookmark.save()
 }
 
 export async function micropubHandler (micropubDocument, req) {
   req.log.info('Handling MicropubDocument:', { data: micropubDocument })
 
-  const { type, name, content, category } = discoverPostType2(micropubDocument)
-  const user = await User.findOne()
-  const author = user._id
+  const { type, name, content, category, bookmarkOf } = discoverPostType(micropubDocument)
+  const author = (await User.findOne())._id
 
-  if (type === 'Note') {
-    return createMicropubNote({ author, name, content, category })
-  } else if (type === 'Article') {
-    const article = new Article({ author, content, name })
-    await article.save()
-    const url = generatePermalink({ hashid: article.hashid, type })
+  let post
 
-    return Promise.resolve({ url })
-  } else {
-    return Promise.reject()
+  switch (type) {
+    case 'Note':
+      post = await createNote({ author, content, category })
+      break
+    case 'Article':
+      post = await createArticle({ author, name, content, category })
+      break
+    case 'Bookmark':
+      post = await createBookmark({ author, name, content, category, bookmarkOf })
+      break
+    default:
+      // Unknown post type
+      return Promise.reject()
   }
+
+  const url = generatePermalink({ hashid: post.hashid, type })
+
+  return Promise.resolve({ url })
 }

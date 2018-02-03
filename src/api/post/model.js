@@ -43,6 +43,8 @@ export const Article = Post.discriminator(
 export const Bookmark = Post.discriminator(
   'Bookmark',
   new Schema({
+    title: String,
+    content: String,
     url: String
   })
 )
