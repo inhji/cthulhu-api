@@ -2,6 +2,7 @@ import Post from './model'
 
 export const posts = async () => {
   return Post.find()
+    .sort({ createdAt: 'desc' })
     .populate('author')
     .exec()
 }
