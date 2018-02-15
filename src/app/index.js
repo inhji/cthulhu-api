@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import errorHandler from 'errorhandler'
 import morgan from 'morgan'
+import cors from 'cors'
 import router from './router'
 import logger from './logger'
 import { connect } from '../database'
@@ -19,6 +20,7 @@ export const start = async () => {
       req.log = logger
       next()
     })
+    app.use(cors(true))
     // Pipe morgan output into winston :)
     app.use(morgan('dev', { stream: logger.stream }))
     app.use(bodyParser.json())
