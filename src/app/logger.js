@@ -1,5 +1,5 @@
 import { createLogger, format, transports } from 'winston'
-const { combine, timestamp, colorize, simple, printf } = format
+const { combine, timestamp, colorize, printf } = format
 
 const myFormat = printf(info => {
   return `${info.timestamp} [${info.level}]: ${info.message} ${JSON.stringify(info.data) || ''}`

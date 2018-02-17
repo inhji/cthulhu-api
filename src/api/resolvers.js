@@ -1,5 +1,5 @@
 import { createResolver } from 'apollo-resolvers'
-import { createError, isInstance } from 'apollo-errors'
+import { isInstance } from 'apollo-errors'
 import { UnknownError, AuthenticationRequiredError, UserExistsError } from './errors'
 
 export const baseResolver = createResolver(
@@ -39,7 +39,7 @@ export const userExistsResolver = baseResolver.createResolver(
 )
 
 export const authenticationRequiredResolver = baseResolver.createResolver(
-  async (root, args, { user, log }) => {
+  async (root, args, { user, log }, error) => {
     if (!user) {
       log.warn(`AuthenticationRequiredError occurred:`, { data: error })
       return new AuthenticationRequiredError()

@@ -8,14 +8,14 @@ const createNote = async ({ author, content, category }) => {
   return note.save()
 }
 
-const createArticle = async ({ author, name, content, category }) => {
+const createArticle =  ({ author, name, content, category }) => {
   const article = new Article({ author, content, title: name, tags: category })
-  return await article.save()
+  return article.save()
 }
 
-const createBookmark = async ({ author, name, content, category, bookmarkOf }) => {
+const createBookmark =  ({ author, name, content, category, bookmarkOf }) => {
   const bookmark = new Bookmark({ author, content, title: name, tags: category, url: bookmarkOf })
-  return await bookmark.save()
+  return bookmark.save()
 }
 
 export async function micropubHandler (micropubDocument, req) {

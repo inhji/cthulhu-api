@@ -1,12 +1,11 @@
-import { GraphQLList as List } from 'graphql'
 import fetch from 'node-fetch'
 
-export default function cachedResolver(url, transformer, cacheTimeInMins = 10) {
+export default function cachedResolver (url, transformer, cacheTimeInMins = 10) {
   let items = []
   let lastFetchTask
   let lastFetchTime = new Date(1970, 0, 1)
 
-  return function() {
+  return function () {
     if (lastFetchTask) {
       return lastFetchTask
     }

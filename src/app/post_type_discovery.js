@@ -18,7 +18,7 @@ function firstNonEmpty (arr) {
 export function discoverPostType (doc) {
   const props = doc.properties
 
-  let name, content, summary, category, bookmarkOf
+  let name, content, category, bookmarkOf
 
   category = props.category
 
