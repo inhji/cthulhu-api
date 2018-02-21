@@ -1,7 +1,6 @@
-import { isInstance } from 'apollo-errors'
 import User from './model'
 import { baseResolver, userExistsResolver } from '../resolvers'
-import { InvalidCredentialsError, UserExistsError } from '../errors'
+import { InvalidCredentialsError } from '../errors'
 
 export const registerUser = userExistsResolver.createResolver(
   async (_, { name, email, password }, context) => {
@@ -15,13 +14,11 @@ export const authenticateUser = baseResolver.createResolver(
   async (_, { email, password }) => {
     const user = await User.findOne({ email })
 
-    if (!user) 
-      throw new InvalidCredentialsError()
+    if (!user) throw new InvalidCredentialsError()
 
     const validPassword = await user.validPassword(password)
 
-    if (!validPassword)
-      throw new InvalidCredentialsError()
+    if (!validPassword) throw new InvalidCredentialsError()
 
     const token = user.createToken()
 

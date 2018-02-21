@@ -8,20 +8,28 @@ const createNote = async ({ author, content, category }) => {
   return note.save()
 }
 
-const createArticle =  ({ author, name, content, category }) => {
+const createArticle = ({ author, name, content, category }) => {
   const article = new Article({ author, content, title: name, tags: category })
   return article.save()
 }
 
-const createBookmark =  ({ author, name, content, category, bookmarkOf }) => {
-  const bookmark = new Bookmark({ author, content, title: name, tags: category, url: bookmarkOf })
+const createBookmark = ({ author, name, content, category, bookmarkOf }) => {
+  const bookmark = new Bookmark({
+    author,
+    content,
+    title: name,
+    tags: category,
+    url: bookmarkOf
+  })
   return bookmark.save()
 }
 
 export async function micropubHandler (micropubDocument, req) {
   req.log.info('Handling MicropubDocument:', { data: micropubDocument })
 
-  const { type, name, content, category, bookmarkOf } = discoverPostType(micropubDocument)
+  const { type, name, content, category, bookmarkOf } = discoverPostType(
+    micropubDocument
+  )
   const author = (await User.findOne())._id
 
   let post
@@ -34,11 +42,17 @@ export async function micropubHandler (micropubDocument, req) {
       post = await createArticle({ author, name, content, category })
       break
     case 'Bookmark':
-      post = await createBookmark({ author, name, content, category, bookmarkOf })
+      post = await createBookmark({
+        author,
+        name,
+        content,
+        category,
+        bookmarkOf
+      })
       break
     default:
       // Unknown post type
-      return Promise.reject()
+      return Promise.reject(new Error('This post type is not implemented yet'))
   }
 
   const url = generatePermalink({ hashid: post.hashid, type })

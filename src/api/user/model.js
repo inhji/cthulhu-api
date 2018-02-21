@@ -17,19 +17,18 @@ const schema = new Schema(
   { timestamps: true }
 )
 
-schema.methods.validPassword = function(password) {
+schema.methods.validPassword = function (password) {
   return bcrypt.compare(password, this.password)
 }
 
-schema.methods.hashPassword = async function() {
+schema.methods.hashPassword = async function () {
   const SALT_ROUNDS = 10
-  const salt = bcrypt.genSaltSync(SALT_ROUNDS)
   const hash = await bcrypt.hash(this.password, SALT_ROUNDS)
 
   return hash
 }
 
-schema.methods.createToken = function() {
+schema.methods.createToken = function () {
   return jwt.sign(
     {
       _id: this._id,
@@ -40,7 +39,7 @@ schema.methods.createToken = function() {
   )
 }
 
-schema.pre('save', async function(next) {
+schema.pre('save', async function (next) {
   if (this.isModified('password')) {
     this.password = await this.hashPassword()
   }
