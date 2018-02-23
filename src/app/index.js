@@ -21,8 +21,8 @@ export const start = async () => {
       next()
     })
     app.use(cors(true))
-    // Pipe morgan output into winston :)
-    app.use(morgan('dev', { stream: logger.stream }))
+    // Pipe morgan output into bunyan :)
+    app.use(morgan('tiny', { stream: logger.stream }))
     app.use(bodyParser.json())
     app.use('/', router)
     app.use(

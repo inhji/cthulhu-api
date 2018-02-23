@@ -1,18 +1,12 @@
-import { createLogger, format, transports } from 'winston'
-const { combine, timestamp, colorize, printf } = format
+import {createLogger, stdSerializers} from 'bunyan'
 
-const myFormat = printf(info => {
-  return `${info.timestamp} [${info.level}]: ${info.message} ${JSON.stringify(info.data) || ''}`
-})
-
-const logger = createLogger({
-  format: combine(colorize(), timestamp(), myFormat),
-  transports: [new transports.Console()]
-})
+const logger = createLogger({ name: 'app', serializers: stdSerializers })
+const reqLogger = createLogger({ name: 'req', serializers: stdSerializers })
 
 logger.stream = {
   write: function (message, encoding) {
-    logger.info(message)
+    const msg = message.trim().replace(/  +/g, ' ')
+    reqLogger.info(msg)
   }
 }
 
