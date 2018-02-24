@@ -27,7 +27,6 @@
     "graphql-tools": "^2.20.2",
     "hashids": "1.1.4",
     "jsonwebtoken": "^8.1.1",
-    "lazymention": "^1.0.1",
     "lodash.compact": "^3.0.1",
     "lodash.head": "^4.0.1",
     "micropub-express": "^0.7.1",

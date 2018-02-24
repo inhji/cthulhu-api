@@ -5,10 +5,8 @@ import jwt from 'express-jwt'
 import { formatError } from 'apollo-errors'
 import { schema } from '../api/graphql'
 import { micropubHandler } from './micropub_handler'
-import lazymention from 'lazymention'
 
 const router = express.Router()
-const lazymentionRouter = lazymention.makeRouter(lazymention.persistence(__dirname))
 const dev = process.env.NODE_ENV !== 'production'
 
 router.get('/', (req, res) => {
@@ -21,18 +19,6 @@ router.get('/', (req, res) => {
     </div>`
   )
 })
-
-router.use(
-  '/webmention',
-  (req, res, next) => {
-    // Configure lazymention here
-    req.config = {
-      domains: ['inhji.de']
-    }
-    next()
-  },
-  lazymentionRouter
-)
 
 router.use(
   '/micropub',
