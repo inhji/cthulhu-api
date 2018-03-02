@@ -1,6 +1,4 @@
 import express from 'express'
-import path from 'path'
-import serveStatic from 'serve-static'
 import bodyParser from 'body-parser'
 import errorHandler from 'errorhandler'
 import morgan from 'morgan'
@@ -26,7 +24,6 @@ export const start = async () => {
     // Pipe morgan output into bunyan :)
     app.use(morgan('tiny', { stream: logger.stream }))
     app.use(bodyParser.json())
-    app.use('/assets', serveStatic(path.join(__dirname, '../..', 'assets')))
     app.use('/', router)
     app.use(
       dev
