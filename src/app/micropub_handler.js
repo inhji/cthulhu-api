@@ -1,28 +1,7 @@
 import { discoverPostType } from './post_type_discovery'
-import { Note, Article, Bookmark } from '../api/post/model'
 import User from '../api/user/model'
 import { generatePermalink } from './permalinks'
-
-const createNote = async ({ author, content, category }) => {
-  const note = new Note({ author, content, tags: category })
-  return note.save()
-}
-
-const createArticle = ({ author, name, content, category }) => {
-  const article = new Article({ author, content, title: name, tags: category })
-  return article.save()
-}
-
-const createBookmark = ({ author, name, content, category, bookmarkOf }) => {
-  const bookmark = new Bookmark({
-    author,
-    content,
-    title: name,
-    tags: category,
-    url: bookmarkOf
-  })
-  return bookmark.save()
-}
+import {createNote, createArticle, createBookmark} from './create'
 
 export async function micropubHandler (micropubDocument, req) {
   req.log.info('Handling MicropubDocument:', { data: micropubDocument })
