@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import { autoIncrement } from 'mongoose-plugin-autoinc'
-import { generateHashid } from './hashids'
-
+import { postHook, noteHook } from './hooks'
 const { ObjectId } = Schema
 
 const schema = new Schema(
@@ -14,37 +13,28 @@ const schema = new Schema(
 )
 
 schema.plugin(autoIncrement, { model: 'Post', field: 'counter' })
-schema.pre('save', function () {
-  const dateObj = new Date(this.createdAt)
-  const hashid = generateHashid({ year: dateObj.getFullYear(), counter: this.counter })
-
-  this.hashid = hashid
-})
+schema.pre('save', postHook)
 
 const Post = mongoose.model('Post', schema)
 
+const noteSchema = new Schema({
+  content: String
+})
+
+noteSchema.pre('save', noteHook)
+
+const articleSchema = new Schema({
+  title: String,
+  content: String
+})
+
+const bookmarkSchema = new Schema({
+  title: String,
+  content: String,
+  url: String
+})
+
+export const Note = Post.discriminator('Note', noteSchema)
+export const Article = Post.discriminator('Article', articleSchema)
+export const Bookmark = Post.discriminator('Bookmark', bookmarkSchema)
 export default Post
-
-export const Note = Post.discriminator(
-  'Note',
-  new Schema({
-    content: String
-  })
-)
-
-export const Article = Post.discriminator(
-  'Article',
-  new Schema({
-    title: String,
-    content: String
-  })
-)
-
-export const Bookmark = Post.discriminator(
-  'Bookmark',
-  new Schema({
-    title: String,
-    content: String,
-    url: String
-  })
-)
