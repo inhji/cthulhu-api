@@ -26,7 +26,7 @@
     "graphql-iso-date": "^3.5.0",
     "graphql-tools": "^2.20.2",
     "hashids": "1.1.4",
-    "hljs": "^6.2.3",
+    "highlight.js": "^9.12.0",
     "jsonwebtoken": "^8.1.1",
     "lodash.compact": "^3.0.1",
     "lodash.head": "^4.0.1",

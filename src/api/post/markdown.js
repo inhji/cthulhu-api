@@ -2,7 +2,7 @@ import MarkdownIt from 'markdown-it'
 import emoji from 'markdown-it-emoji'
 import twemoji from 'twemoji'
 import checkbox from 'markdown-it-checkbox'
-import hljs from 'hljs'
+import hljs from 'highlight.js'
 
 const highlight = (str, lang) => {
   if (lang && hljs.getLanguage(lang)) {
