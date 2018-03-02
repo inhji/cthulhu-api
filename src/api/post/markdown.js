@@ -44,7 +44,7 @@ md.use(emoji, {
 
 md.renderer.rules.emoji = function (token, idx) {
   return twemoji.parse(token[idx].content, (icon, options, variant) => {
-    return `https://api.inhji.de/assets/emoji/${icon}.png`
+    return `/assets/emoji/${icon}.png`
   })
 }
 
