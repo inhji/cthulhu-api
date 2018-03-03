@@ -9,4 +9,4 @@ export const tracks = cachedResolver('https://api.listenbrainz.org/1/user/inhji/
       listenedAt: l.listened_at
     }
   })
-})
+}, 5)
