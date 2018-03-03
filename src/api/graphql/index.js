@@ -10,12 +10,14 @@ import * as userQueries from '../user/queries'
 import * as trackQueries from '../track/queries'
 import * as postQueries from '../post/queries'
 import * as blogPostQueries from '../blogPost/queries'
+import * as gameQueries from '../game/queries'
 
 import userTypes from '../user/types'
 import habitTypes from '../habit/types'
 import trackTypes from '../track/types'
 import postTypes from '../post/types'
 import blogPostTypes from '../blogPost/types'
+import gameTypes from '../game/types'
 
 const typeDefs = /* GraphQL */ `
   scalar DateTime
@@ -30,6 +32,7 @@ const typeDefs = /* GraphQL */ `
     post(id: ID!): Post
     postByHashid(hashid: ID!): Post
     blogPosts: [BlogPost]
+    games: [Game]
   }
 
   type Mutation  {
@@ -44,7 +47,8 @@ const resolvers = {
     ...habitQueries,
     ...userQueries,
     ...postQueries,
-    ...blogPostQueries
+    ...blogPostQueries,
+    ...gameQueries
   },
   Post: {
     __resolveType (obj, context, info) {
@@ -62,6 +66,6 @@ const resolvers = {
 }
 
 export const schema = makeExecutableSchema({
-  typeDefs: [typeDefs, userTypes, habitTypes, trackTypes, postTypes, blogPostTypes],
+  typeDefs: [typeDefs, userTypes, habitTypes, trackTypes, postTypes, blogPostTypes, gameTypes],
   resolvers
 })
