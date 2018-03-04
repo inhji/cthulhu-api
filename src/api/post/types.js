@@ -49,5 +49,6 @@ export default /* GraphQL */ `
     createNote (content: String!): Note
     createArticle (title: String!, content: String!): Article
     createBookmark(url: String!): Bookmark
+    updateNote(id: ID!, content: String!, tags: [String]!)
   }
 `
