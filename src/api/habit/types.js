@@ -22,8 +22,21 @@ export default /* GraphQL */ `
 
 
   extend type Mutation {
-    createHabit (author: ID!, name: String!, description: String, isGood: Boolean, threshold: Int, days: Int): Habit
-    updateHabit(id: ID!, name: String, description: String, isGood: Boolean, threshold: Int, days: Int): Habit
+    createHabit(
+      author: ID!,
+      name: String!,
+      description: String,
+      isGood: Boolean,
+      threshold: Int,
+      days: Int
+    ): Habit
+    updateHabit(id: ID!,
+      name: String,
+      description: String,
+      isGood: Boolean,
+      threshold: Int,
+      days: Int
+    ): Habit
     deleteHabit(id: ID!): DeleteHabitPayload,
     createHabitLog (id: ID!): Habit
   }

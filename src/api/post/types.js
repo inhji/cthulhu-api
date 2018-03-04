@@ -45,10 +45,15 @@ export default /* GraphQL */ `
     updatedAt: DateTime
   }
 
+  type DeletePostPayload {
+    id: ID!
+  }
+
   extend type Mutation {
     createNote (content: String!): Note
     createArticle (title: String!, content: String!): Article
     createBookmark(url: String!): Bookmark
     updateNote(id: ID!, content: String!, tags: [String]!): Note
+    deleteNote(id: ID!): DeletePostPayload
   }
 `

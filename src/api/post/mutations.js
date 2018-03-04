@@ -24,10 +24,16 @@ export const createBookmark = (_, { url }, { user }) => {
   return bookmark.save()
 }
 
-export const updateNote = async (_, { id, ...fields }, {user, dev}) => {
+export const updateNote = async (_, { id, ...fields }, { user, dev }) => {
   const note = await Note.findById(id)
   Object.assign(note, fields)
   await note.save()
 
   return Note.findById(id).exec()
+}
+
+export const deleteNote = async (_, { id }, { user }) => {
+  await Note.findByIdAndRemove(id)
+
+  return { id }
 }
