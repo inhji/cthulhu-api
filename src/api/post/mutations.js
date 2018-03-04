@@ -23,3 +23,11 @@ export const createBookmark = (_, { url }, { user }) => {
   const bookmark = new Bookmark({ url, author })
   return bookmark.save()
 }
+
+export const updateNote = async (_, { id, ...fields }, {user, dev}) => {
+  const note = await Note.findById(id)
+  Object.assign(note, fields)
+  await note.save()
+
+  return Note.findById(id).exec()
+}
