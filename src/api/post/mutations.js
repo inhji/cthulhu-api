@@ -37,3 +37,9 @@ export const deleteNote = async (_, { id }, { user }) => {
 
   return { id }
 }
+
+export const deleteBookmark = async (_, { id }, { user }) => {
+  await Bookmark.findByIdAndRemove(id)
+
+  return { id }
+}

@@ -55,5 +55,6 @@ export default /* GraphQL */ `
     createBookmark(url: String!): Bookmark
     updateNote(id: ID!, content: String!, tags: [String]!): Note
     deleteNote(id: ID!): DeletePostPayload
+    deleteBookmark(id: ID!): DeletePostPayload
   }
 `
