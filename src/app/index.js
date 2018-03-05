@@ -20,7 +20,16 @@ export const start = async () => {
       req.log = logger
       next()
     })
-    app.use(cors(true))
+    app.use(
+      cors({
+        credentials: true,
+        // FIXME: This is a workaround for reflecting the current origin
+        // https://github.com/expressjs/cors/issues/119
+        origin: function (origin, callback) {
+          callback(null, true)
+        }
+      })
+    )
     // Pipe morgan output into bunyan :)
     app.use(morgan('tiny', { stream: logger.stream }))
     app.use(bodyParser.json())

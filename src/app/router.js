@@ -74,8 +74,8 @@ router.post('/login', async (req, res) => {
   const token = user.createToken()
 
   res.cookie(process.env.COOKIE_NAME, token, {
-    httpOnly: false,
-    secure: false
+    httpOnly: true,
+    secure: !dev
   })
 
   res.sendStatus(200)
