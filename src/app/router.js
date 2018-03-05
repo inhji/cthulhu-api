@@ -75,7 +75,7 @@ router.post('/login', async (req, res) => {
 
   res.cookie(process.env.COOKIE_NAME, token, {
     httpOnly: false,
-    secure: !dev
+    secure: false
   })
 
   res.sendStatus(200)
