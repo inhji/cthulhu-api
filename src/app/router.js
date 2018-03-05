@@ -73,15 +73,11 @@ router.post('/login', async (req, res) => {
 
   const token = user.createToken()
 
-  res.cookie(
-    process.env.COOKIE_NAME,
-    token,
-    JSON.stringify({
-      domain: '.inhji.de',
-      httpOnly: true,
-      secure: !dev
-    })
-  )
+  res.cookie(process.env.COOKIE_NAME, token, {
+    domain: '.inhji.de',
+    httpOnly: true,
+    secure: !dev
+  })
 
   res.sendStatus(200)
 })
