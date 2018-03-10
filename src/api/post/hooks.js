@@ -1,7 +1,7 @@
 import { generateHashid } from './hashids'
 import md from './markdown'
 
-export function postHook () {
+export function hashidHook () {
   const dateObj = new Date(this.createdAt)
   const hashid = generateHashid({
     year: dateObj.getFullYear(),
@@ -11,6 +11,6 @@ export function postHook () {
   this.hashid = hashid
 }
 
-export function noteHook () {
-  this.content = md.render(this.content)
+export function markdownHook () {
+  this.contentHtml = md.render(this.content)
 }
