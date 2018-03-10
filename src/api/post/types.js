@@ -4,6 +4,7 @@ export default /* GraphQL */ `
   type Note {
     id: ID!
     content: String
+    contentHtml: String
 
     tags: [String]
     author: User
@@ -18,6 +19,7 @@ export default /* GraphQL */ `
     id: ID!
     title: String
     content: String
+    contentHtml: String
 
     tags: [String]
     author: User
@@ -34,6 +36,7 @@ export default /* GraphQL */ `
     url: String
     title: String
     content: String
+    contentHtml: String
 
     tags: [String]
     author: User
