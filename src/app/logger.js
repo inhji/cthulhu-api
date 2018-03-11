@@ -1,7 +1,7 @@
 import {createLogger, stdSerializers} from 'bunyan'
 
 const logger = createLogger({ name: 'app', serializers: stdSerializers })
-const reqLogger = createLogger({ name: 'req', serializers: stdSerializers })
+const reqLogger = logger.child({ component: 'req' })
 
 logger.stream = {
   write: function (message, encoding) {
