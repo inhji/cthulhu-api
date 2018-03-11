@@ -1,6 +1,6 @@
 import cachedResolver from '../cached_resolver'
 
-export const tracks = cachedResolver('https://api.listenbrainz.org/1/user/inhji/listens', data => {
+export const tracks = cachedResolver('https://api.listenbrainz.org/1/user/inhji/listens?count=1', data => {
   const listens = data.payload.listens
   return listens.map(l => {
     return {
