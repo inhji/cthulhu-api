@@ -39,7 +39,7 @@ export const loginHandler = async (req, res) => {
   res.cookie(process.env.COOKIE_NAME, token, {
     // httpOnly: true,
     // secure: !dev,
-    expires: (+new Date() + 604800000)
+    expires: new Date(+new Date() + 604800000)
     // maxAge: 604800000 // 7 days
   })
 
