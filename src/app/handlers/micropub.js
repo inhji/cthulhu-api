@@ -1,7 +1,7 @@
-import { discoverPostType } from './post_type_discovery'
-import User from '../api/user/model'
-import { generatePermalink } from './permalinks'
-import {createNote, createArticle, createBookmark} from './create'
+import { discoverPostType } from '../post_type_discovery'
+import User from '../../api/user/model'
+import { generatePermalink } from '../permalinks'
+import {createNote, createArticle, createBookmark} from '../create'
 
 export async function micropubHandler (micropubDocument, req) {
   req.log.info('Handling MicropubDocument:', { data: micropubDocument })
