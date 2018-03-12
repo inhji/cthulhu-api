@@ -36,13 +36,11 @@ export const loginHandler = async (req, res) => {
 
   const token = user.createToken()
 
-  // res.cookie(process.env.COOKIE_NAME, token, {
-  //   httpOnly: true,
-  //   secure: !dev,
-  //   maxAge: 604800000 // 7 days
-  // })
-
-  res.cookie(process.env.COOKIE_NAME, token)
+  res.cookie(process.env.COOKIE_NAME, token, {
+    // httpOnly: true,
+    // secure: !dev,
+    maxAge: 604800000 // 7 days
+  })
 
   res.sendStatus(200)
 }
