@@ -37,10 +37,11 @@ export const loginHandler = async (req, res) => {
   const token = user.createToken()
 
   res.cookie(process.env.COOKIE_NAME, token, {
-    // httpOnly: true,
-    // secure: !dev,
-    expires: new Date(+new Date() + 604800000)
-    // maxAge: 604800000 // 7 days
+    domain: '.inhji.de',
+    httpOnly: true,
+    secure: !dev,
+    maxAge: 604800000 // 7 days
+    // expires: new Date(+new Date() + 604800000)
   })
 
   res.sendStatus(200)
