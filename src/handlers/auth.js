@@ -41,7 +41,6 @@ export const loginHandler = async (req, res) => {
     httpOnly: true,
     secure: !dev,
     maxAge: 604800000 // 7 days
-    // expires: new Date(+new Date() + 604800000)
   })
 
   return res.json({ id: req.user._id })
