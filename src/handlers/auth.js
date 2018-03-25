@@ -44,5 +44,5 @@ export const loginHandler = async (req, res) => {
     // expires: new Date(+new Date() + 604800000)
   })
 
-  res.sendStatus(200)
+  return res.json({ id: req.user._id })
 }
