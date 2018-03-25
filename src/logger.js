@@ -1,4 +1,4 @@
-import {createLogger, stdSerializers} from 'bunyan'
+import { createLogger, stdSerializers } from 'bunyan'
 
 const logger = createLogger({ name: 'app', serializers: stdSerializers })
 const reqLogger = logger.child({ component: 'req' })
