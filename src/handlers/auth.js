@@ -13,7 +13,7 @@ export const loginHandler = async (req, res) => {
   const { email, password } = req.body
 
   if (!email || !password) {
-    return res.sendStatus(400).json({
+    return res.status(400).json({
       error: 'Missing Credentials'
     })
   }
@@ -21,7 +21,7 @@ export const loginHandler = async (req, res) => {
   const user = await User.findOne({ email })
 
   if (!user) {
-    return res.sendStatus(403).json({
+    return res.status(403).json({
       error: 'Invalid Credentials'
     })
   }
@@ -29,7 +29,7 @@ export const loginHandler = async (req, res) => {
   const validPassword = await user.validPassword(password)
 
   if (!validPassword) {
-    return res.sendStatus(403).json({
+    return res.status(403).json({
       error: 'Invalid Credentials'
     })
   }
@@ -43,5 +43,5 @@ export const loginHandler = async (req, res) => {
     maxAge: 604800000 // 7 days
   })
 
-  return res.json({ id: req.user._id })
+  return res.json({ id: user._id })
 }
