@@ -1,4 +1,4 @@
-import { Note, Article, Bookmark } from '../api/post/model'
+import { Note, Article, Bookmark } from './api/post/model'
 
 export const createNote = async ({ author, content, category }) => {
   const note = new Note({ author, content, tags: category })

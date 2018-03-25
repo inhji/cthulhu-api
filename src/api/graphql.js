@@ -1,23 +1,23 @@
 import { makeExecutableSchema } from 'graphql-tools'
 import { GraphQLDateTime } from 'graphql-iso-date'
 
-import * as habitMutations from '../habit/mutations'
-import * as userMutations from '../user/mutations'
-import * as postMutations from '../post/mutations'
+import * as habitMutations from './habit/mutations'
+import * as userMutations from './user/mutations'
+import * as postMutations from './post/mutations'
 
-import * as habitQueries from '../habit/queries'
-import * as userQueries from '../user/queries'
-import * as trackQueries from '../track/queries'
-import * as postQueries from '../post/queries'
-import * as blogPostQueries from '../blogPost/queries'
-import * as gameQueries from '../game/queries'
+import * as habitQueries from './habit/queries'
+import * as userQueries from './user/queries'
+import * as trackQueries from './track/queries'
+import * as postQueries from './post/queries'
+import * as blogPostQueries from './blogPost/queries'
+import * as gameQueries from './game/queries'
 
-import userTypes from '../user/types'
-import habitTypes from '../habit/types'
-import trackTypes from '../track/types'
-import postTypes from '../post/types'
-import blogPostTypes from '../blogPost/types'
-import gameTypes from '../game/types'
+import userTypes from './user/types'
+import habitTypes from './habit/types'
+import trackTypes from './track/types'
+import postTypes from './post/types'
+import blogPostTypes from './blogPost/types'
+import gameTypes from './game/types'
 
 const typeDefs = /* GraphQL */ `
   scalar DateTime

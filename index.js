@@ -5,6 +5,6 @@ require('babel-register')({
   plugins: ['transform-object-rest-spread']
 })
 
-const { start } = require('./src/app')
+const { start } = require('./src')
 
 start()

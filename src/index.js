@@ -5,7 +5,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import router from './router'
 import logger from './logger'
-import { connect } from '../database'
+import { connect } from './database'
 
 export const start = async () => {
   try {

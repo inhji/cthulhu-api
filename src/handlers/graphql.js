@@ -1,6 +1,6 @@
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { formatError } from 'apollo-errors'
-import { schema } from '../../api/graphql'
+import { schema } from '../api/graphql'
 
 const dev = process.env.NODE_ENV !== 'production'
 

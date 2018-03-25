@@ -1,4 +1,4 @@
-import User from '../../api/user/model'
+import User from '../api/user/model'
 const dev = process.env.NODE_ENV !== 'production'
 
 export const loggedinHandler = async (req, res) => {
