@@ -3,7 +3,7 @@ const dev = process.env.NODE_ENV !== 'production'
 
 export const loggedinHandler = async (req, res) => {
   if (req.user && req.user._id) {
-    return res.json({ id: req.user._id })
+    return res.sendStatus(200)
   } else {
     return res.sendStatus(401)
   }
