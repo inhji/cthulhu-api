@@ -43,5 +43,5 @@ export const loginHandler = async (req, res) => {
     maxAge: 604800000 // 7 days
   })
 
-  return res.json({ id: user._id })
+  return res.json({ id: user._id, token })
 }
