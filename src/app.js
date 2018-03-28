@@ -32,7 +32,7 @@ app.use(
     ? errorHandler({ log: true })
     : (err, req, res, next) => {
       logger.error(err.stack)
-      res.sendStatus(500).send('Something broke horribly!')
+      res.status(500).send('Something broke horribly!')
     }
 )
 
