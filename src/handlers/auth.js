@@ -1,12 +1,25 @@
 import User from '../api/user/model'
 const dev = process.env.NODE_ENV !== 'production'
 
+const cookieOptions = {
+  domain: '.inhji.de',
+  httpOnly: true,
+  secure: !dev,
+  maxAge: 604800000 // 7 days
+}
+
 export const loggedinHandler = async (req, res) => {
   if (req.user && req.user._id) {
     return res.sendStatus(200)
   } else {
     return res.sendStatus(401)
   }
+}
+
+export const logoutHandler = async (req, res) => {
+  res.clearCookie(process.env.COOKIE_NAME, cookieOptions)
+
+  res.sendStatus(200)
 }
 
 export const loginHandler = async (req, res) => {
@@ -36,12 +49,7 @@ export const loginHandler = async (req, res) => {
 
   const token = user.createToken()
 
-  res.cookie(process.env.COOKIE_NAME, token, {
-    domain: '.inhji.de',
-    httpOnly: true,
-    secure: !dev,
-    maxAge: 604800000 // 7 days
-  })
+  res.cookie(process.env.COOKIE_NAME, token, cookieOptions)
 
   return res.json({ id: user._id, token })
 }

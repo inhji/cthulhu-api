@@ -79,3 +79,15 @@ describe('Test /loggedin', () => {
     expect(res2.statusCode).toBe(200)
   })
 })
+
+describe('Test /logout', () => {
+  const agent = request.agent(server)
+
+  test('It should return 200 and delete the cookie', async () => {
+    const res = await agent.post('/logout')
+
+    expect(res.statusCode).toBe(200)
+    expect(res.headers['set-cookie']).toBeTruthy()
+    expect(res.headers['set-cookie'][0]).toMatch(/^CTHULHU_SESSION=;/)
+  })
+})
