@@ -38,6 +38,6 @@ export default /* GraphQL */ `
       days: Int
     ): Habit
     deleteHabit(id: ID!): DeleteHabitPayload,
-    createHabitLog (id: ID!): Habit
+    createHabitLog (id: ID!, daysOffset: Int): Habit
   }
 `
