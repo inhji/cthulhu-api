@@ -1,8 +1,8 @@
 /* eslint-env jest */
-require('dotenv').config()
+require('dotenv-safe').config()
 const request = require('supertest')
 const server = require('../test-server')()
-// const server = require('../../src/app').default.listen()
+const getCookie = require('../cookie-helper')
 
 describe('Test /login', () => {
   test('It should return 400 if email is missing', async () => {
@@ -43,7 +43,7 @@ describe('Test /login', () => {
     expect(res.statusCode).toBe(403)
   })
 
-  test('It should return 200 with a cookie and the user id in the body if login was successful', async () => {
+  test('It should return 200 with cookie and userid in the body if login successful', async () => {
     const res = await request(server)
       .post('/login')
       .send({
@@ -69,14 +69,10 @@ describe('Test /loggedin', () => {
   })
 
   test('It should return 200 and the userid if a valid cookie was provided', async () => {
-    const res = await agent.post('/login').send({
-      email: 'johnnie@posteo.de',
-      password: '271090lotd'
-    })
+    const cookie = await getCookie(server)
+    const res = await agent.post('/loggedin').set('Cookie', cookie)
 
-    const res2 = await agent.post('/loggedin').set('Cookie', res.headers['set-cookie'])
-
-    expect(res2.statusCode).toBe(200)
+    expect(res.statusCode).toBe(200)
   })
 })
 
