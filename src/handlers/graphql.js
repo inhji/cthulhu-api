@@ -10,4 +10,4 @@ export const graphqlHandler = graphqlExpress(req => ({
   context: { user: req.user, dev, log: req.log }
 }))
 
-export const graphiqlHandler = graphiqlExpress({ endpointURL: '/graphql' })
+export const graphiqlHandler = graphiqlExpress({ endpointURL: '/api/graphql' })
