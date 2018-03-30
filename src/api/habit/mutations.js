@@ -1,6 +1,7 @@
 import Habit from './model'
 import { authenticationRequiredResolver } from '../resolvers'
 import { HabitNotFoundError } from '../errors'
+import moment from 'moment'
 
 const habitNotFoundResolver = authenticationRequiredResolver.createResolver(
   async (_, { id, ...rest }) => {
@@ -24,17 +25,15 @@ export const createHabit = authenticationRequiredResolver.createResolver(
   }
 )
 
-export const updateHabit = habitNotFoundResolver.createResolver(
-  async (_, { id, ...fields }) => {
-    const habit = await Habit.findById(id)
-    Object.assign(habit, fields)
-    await habit.save()
+export const updateHabit = habitNotFoundResolver.createResolver(async (_, { id, ...fields }) => {
+  const habit = await Habit.findById(id)
+  Object.assign(habit, fields)
+  await habit.save()
 
-    return Habit.findById(id)
-      .populate('author')
-      .exec()
-  }
-)
+  return Habit.findById(id)
+    .populate('author')
+    .exec()
+})
 
 export const deleteHabit = habitNotFoundResolver.createResolver(async (_, { id }) => {
   await Habit.findByIdAndRemove(id)
@@ -42,8 +41,16 @@ export const deleteHabit = habitNotFoundResolver.createResolver(async (_, { id }
   return { id }
 })
 
-export const createHabitLog = habitNotFoundResolver.createResolver(async (_, { id }) => {
-  const habit = await Habit.findById(id)
-  habit.logs.push(new Date())
-  return habit.save()
-})
+export const createHabitLog = habitNotFoundResolver.createResolver(
+  async (_, { id, daysOffset }) => {
+    const habit = await Habit.findById(id)
+    let date = moment()
+
+    if (daysOffset) {
+      date = date.subtract(daysOffset, 'days')
+    }
+
+    habit.logs.push(date.toDate())
+    return habit.save()
+  }
+)
