@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 import { micropubHandler } from './handlers/micropub'
 import { jwtHandler } from './handlers/jwt'
 import { publicHandler } from './handlers/public'
-import { loginHandler, loggedinHandler } from './handlers/auth'
+import { loginHandler, logoutHandler, loggedinHandler } from './handlers/auth'
 import { graphqlHandler, graphiqlHandler } from './handlers/graphql'
 
 const router = express.Router()
@@ -34,6 +34,7 @@ router.use('/graphql', graphqlHandler)
 router.get('/graphiql', graphiqlHandler)
 router.post('/login', loginHandler)
 router.post('/loggedin', loggedinHandler)
+router.post('/logout', logoutHandler)
 router.get('/', publicHandler)
 
 export default router
