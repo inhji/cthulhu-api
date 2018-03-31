@@ -15,7 +15,6 @@ const habitNotFoundResolver = authenticationRequiredResolver.createResolver(
 
 export const createHabit = authenticationRequiredResolver.createResolver(
   async (_, { author, name, description, isGood, threshold, days }, context) => {
-    console.log(_, author, context)
     const habit = new Habit({ name, description, isGood, threshold, days, author })
     await habit.save()
 
