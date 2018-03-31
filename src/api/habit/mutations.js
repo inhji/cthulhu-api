@@ -46,11 +46,7 @@ export const createHabitLog = habitNotFoundResolver.createResolver(
     const habit = await Habit.findById(id)
     let date = moment()
 
-    if (daysOffset) {
-      date = date.subtract(daysOffset, 'days')
-    }
-
-    habit.logs.push(date.toDate())
+    habit.logs.push(date.subtract(daysOffset || 0, 'days').toDate())
     return habit.save()
   }
 )
