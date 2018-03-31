@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon | bunyan",
-    "test": "jest --watch"
+    "test": "NODE_ENV=test jest --watch"
   },
   "keywords": [],
   "author": "",
