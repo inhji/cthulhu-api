@@ -80,7 +80,7 @@ describe('Test /loggedin', () => {
   })
 
   test('It should return 200 and the userid if a valid cookie was provided', async () => {
-    const cookie = await getCookie(server)
+    const { cookie } = await getCookie(server)
     const res = await agent.post('/loggedin').set('Cookie', cookie)
 
     expect(res.statusCode).toBe(200)
