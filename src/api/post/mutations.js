@@ -1,12 +1,6 @@
 import { Note, Article, Bookmark } from './model'
 
 export const createNote = (_, { content }, { user, dev }) => {
-  // HACK: dont require author field if we're in dev mode
-  if (dev) {
-    const note = new Note({ content })
-    return note.save()
-  }
-
   const author = user._id
   const note = new Note({ content, author })
   return note.save()
@@ -30,6 +24,14 @@ export const updateNote = async (_, { id, ...fields }, { user, dev }) => {
   await note.save()
 
   return Note.findById(id).exec()
+}
+
+export const updateBookmark = async (_, { id, ...fields }, { user, dev }) => {
+  const bookmark = await Bookmark.findById(id)
+  Object.assign(bookmark, fields)
+  await bookmark.save()
+
+  return Bookmark.findById(id).exec()
 }
 
 export const deleteNote = async (_, { id }, { user }) => {
