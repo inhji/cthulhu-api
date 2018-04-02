@@ -1,3 +1,3 @@
 export function generatePermalink ({ hashid, type }) {
-  return `${process.env.PUBLIC_URL}/${type.toLowerCase()}/${hashid}`
+  return `${process.env.PUBLIC_URL}/post/${hashid}`
 }
