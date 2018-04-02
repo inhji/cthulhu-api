@@ -10,15 +10,7 @@ import { graphqlHandler, graphiqlHandler } from './handlers/graphql'
 
 const router = express.Router()
 
-router.use(cookieParser())
-router.use(
-  jwt({
-    secret: process.env.JWT_SECRET,
-    credentialsRequired: false,
-    getToken: jwtHandler
-  })
-)
-
+// Micropub should not use jwt middleware
 router.use(
   '/micropub',
   micropub({
@@ -27,6 +19,15 @@ router.use(
       endpoint: process.env.TOKEN_ENDPOINT
     },
     handler: micropubHandler
+  })
+)
+
+router.use(cookieParser())
+router.use(
+  jwt({
+    secret: process.env.JWT_SECRET,
+    credentialsRequired: false,
+    getToken: jwtHandler
   })
 )
 
