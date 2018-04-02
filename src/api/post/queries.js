@@ -8,7 +8,7 @@ export const posts = async () => {
 }
 
 export const post = (_, { id }) => {
-  return Post.findOne({ id: id })
+  return Post.findOne({ _id: id })
     .populate('author')
     .exec()
 }
