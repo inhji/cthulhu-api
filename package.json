@@ -39,7 +39,7 @@
     "mongoose": "^5.0.12",
     "mongoose-plugin-autoinc": "^1.1.9",
     "morgan": "^1.9.0",
-    "node-fetch": "^1.7.3",
+    "node-fetch": "^2.1.2",
     "twemoji": "^2.5.1",
     "winston": "^3.0.0-rc3"
   },
