@@ -41,7 +41,7 @@
     "morgan": "^1.9.0",
     "node-fetch": "^1.7.3",
     "twemoji": "^2.5.1",
-    "winston": "^3.0.0-rc3"
+    "winston": "^3.0.0-rc5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
