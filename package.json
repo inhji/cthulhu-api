@@ -61,6 +61,6 @@
     "nodemon": "^1.17.2",
     "prettier-eslint": "^8.8.1",
     "superagent": "^3.8.2",
-    "supertest": "^3.0.0"
+    "supertest": "^3.1.0"
   }
 }
